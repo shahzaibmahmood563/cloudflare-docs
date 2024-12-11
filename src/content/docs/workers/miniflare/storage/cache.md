@@ -3,8 +3,8 @@ order: 4
 title: ✨ Cache
 ---
 
-- [Cache Reference](https://developers.cloudflare.com/workers/runtime-apis/cache)
-- [How the Cache works](https://developers.cloudflare.com/workers/learning/how-the-cache-works#cache-api)
+- [Cache Reference](/workers/runtime-apis/cache)
+- [How the Cache works](/workers/learning/how-the-cache-works#cache-api)
   (note that cache using `fetch` is unsupported)
 
 ## Default Cache
@@ -30,33 +30,26 @@ await caches.open("cache_name");
 
 By default, cached data is stored in memory. It will persist between reloads,
 but not different `Miniflare` instances. To enable
-persistence to the file system or Redis, specify the cache persistence option:
+persistence to the file system, specify the cache persistence option:
 
 ```js
 const mf = new Miniflare({
 	cachePersist: true, // Defaults to ./.mf/cache
 	cachePersist: "./data", // Custom path
-	cachePersist: "redis://localhost:6379", // Redis server
 });
 ```
-
-When using the file system, each namespace will get its own directory within the
-cache persistence directory.
 
 ## Manipulating Outside Workers
 
 For testing, it can be useful to put/match data from cache outside a worker. You
 can do this with the `getCaches` method:
 
-```js
----
-highlight: [23,24,25,26,27,28,29,30,31,32]
----
+```js {23,24,25,26,27,28,29,30,31,32}
 import { Miniflare, Response } from "miniflare";
 
 const mf = new Miniflare({
-  modules: true,
-  script: `
+	modules: true,
+	script: `
   export default {
     async fetch(request) {
       const url = new URL(request.url);
@@ -79,10 +72,10 @@ const cachedRes = await caches.default.match("https://miniflare.dev/");
 console.log(await cachedRes.text()); // 1
 
 await caches.default.put(
-  "https://miniflare.dev",
-  new Response("2", {
-    headers: { "Cache-Control": "max-age=3600" },
-  })
+	"https://miniflare.dev",
+	new Response("2", {
+		headers: { "Cache-Control": "max-age=3600" },
+	}),
 );
 res = await mf.dispatchFetch("http://localhost:8787");
 console.log(await res.text()); // 2
@@ -99,10 +92,3 @@ const mf = new Miniflare({
 	cache: false,
 });
 ```
-
-## Subrequests
-
-Like the real workers runtime, Miniflare limits you to
-[50 subrequests per request](https://developers.cloudflare.com/workers/platform/limits#account-plan-limits).
-Each call to `fetch()`, each URL in a redirect chain, and each call to a Cache
-API method (`put()`/`match()`/`delete()`) counts as a subrequest.

@@ -1,6 +1,6 @@
 ---
 order: 3
-title: ⬆️ Migrating from Version 2
+title: ⬆️Migrating from Version 2
 ---
 
 Miniflare v3 now uses [`workerd`](https://github.com/cloudflare/workerd), the
@@ -15,7 +15,7 @@ information.
 
 Miniflare v3 no longer includes a standalone CLI. To get the same functionality,
 you will need to switch over to
-[Wrangler](https://developers.cloudflare.com/workers/wrangler/). Wrangler v3
+[Wrangler](/workers/wrangler/). Wrangler v3
 uses Miniflare v3 by default. To start a local development server, run:
 
 ```sh
@@ -30,14 +30,9 @@ please open an issue on
 
 We have tried to keep Miniflare v3’s API close to Miniflare v2 where possible,
 but many options and methods have been removed or changed with the switch to the
-open-source `workerd` runtime. See the
-[Getting Started guide for the new API docs](/get-started).
+open-source `workerd` runtime.
 
 ### Updated Options
-
-<!-- prettier-ignore-start -->
-
-<Definitions>
 
 - `kvNamespaces/r2Buckets/d1Databases`
   - In addition to `string[]`s, these options now accept
@@ -49,35 +44,31 @@ open-source `workerd` runtime. See the
     mapping binding names to queue names, or a `string[]` of binding names to
     queues of the same name.
 - `queueConsumers`
+
   - Either accepts a `Record<string, QueueConsumerOptions>` mapping queue names
     to consumer options, or a `string[]` of queue names to consume with default
     options. `QueueConsumerOptions` has the following type:
 
     ```ts
     interface QueueConsumerOptions {
-      // https://developers.cloudflare.com/queues/platform/configuration/#consumer
-      maxBatchSize?: number;                  // default: 5
-      maxBatchTimeout?: number /* seconds */; // default: 1
-      maxRetries?: number;                    // default: 2
-      deadLetterQueue?: string;               // default: none
+    	// /queues/platform/configuration/#consumer
+    	maxBatchSize?: number; // default: 5
+    	maxBatchTimeout?: number /* seconds */; // default: 1
+    	maxRetries?: number; // default: 2
+    	deadLetterQueue?: string; // default: none
     }
     ```
+
 - `cfFetch`
   - Renamed to `cf`. Either accepts a `boolean`, `string` (as before), or an
     object to use a the `cf` object for incoming requests.
 
-</Definitions>
-
-<!-- prettier-ignore-end -->
-
 ### Removed Options
-
-<Definitions>
 
 - `wranglerConfigPath/wranglerConfigEnv`
   - Miniflare no longer handles Wrangler's configuration. To programmatically
     start up a Worker based on Wrangler configuration, use the
-    [`unstable_dev()`](https://developers.cloudflare.com/workers/wrangler/api/#unstable_dev)
+    [`unstable_dev()`](/workers/wrangler/api/#unstable_dev)
     API.
 - `packagePath`
   - Miniflare no longer loads script paths from `package.json` files. Use the
@@ -191,21 +182,13 @@ open-source `workerd` runtime. See the
     `chrome://inspect` in Google Chrome to open DevTools and perform CPU
     profiling.
 
-</Definitions>
-
 ### Updated Methods
-
-<Definitions>
 
 - `setOptions()`
   - Miniflare v3 now requires a full configuration object to be passed, instead
     of a partial patch.
 
-</Definitions>
-
 ### Removed Methods
-
-<Definitions>
 
 - `reload()`
   - Call `setOptions()` with the original configuration object to reload
@@ -218,9 +201,9 @@ open-source `workerd` runtime. See the
   - The functionality of `dispatchScheduled` can now be done via `getWorker()`. For more information read the [scheduled events documentation](/core/scheduled#dispatching-events).
 - `dispatchQueue()`
   - Use the `queue()` method on
-    [service bindings](https://developers.cloudflare.com/workers/platform/bindings/about-service-bindings/)
+    [service bindings](/workers/platform/bindings/about-service-bindings/)
     or
-    [queue producer bindings](https://developers.cloudflare.com/queues/platform/configuration/#producer)
+    [queue producer bindings](/queues/platform/configuration/#producer)
     instead.
 - `getGlobalScope()/getBindings()/getModuleExports()`
   - These methods returned objects from inside the Workers sandbox. Since
@@ -235,13 +218,7 @@ open-source `workerd` runtime. See the
   - [`workerd`](https://github.com/cloudflare/workerd) does not support waiting
     for all `waitUntil()`ed promises yet.
 
-</Definitions>
-
 ### Removed Packages
-
-<Definitions>
 
 - `@miniflare/*`
   - Miniflare is now contained within a single `miniflare` package.
-
-</Definitions>

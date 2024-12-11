@@ -3,15 +3,15 @@ order: 0
 title: "📨 Fetch Events"
 ---
 
-- [`FetchEvent` Reference](https://developers.cloudflare.com/workers/runtime-apis/fetch-event)
-- [`FetchEvent` Lifecycle](https://developers.cloudflare.com/workers/learning/fetch-event-lifecycle)
-- [`addEventListener` Reference](https://developers.cloudflare.com/workers/runtime-apis/add-event-listener)
+- [`FetchEvent` Reference](/workers/runtime-apis/fetch-event)
+- [`FetchEvent` Lifecycle](/workers/learning/fetch-event-lifecycle)
+- [`addEventListener` Reference](/workers/runtime-apis/add-event-listener)
 
 ## HTTP Requests
 
 Whenever an HTTP request is made, a `Request` object is dispatched to your worker, then the generated `Response` is returned. The
 `Request` object will include a
-[`cf` object](https://developers.cloudflare.com/workers/runtime-apis/request#incomingrequestcfproperties).
+[`cf` object](/workers/runtime-apis/request#incomingrequestcfproperties).
 Miniflare will log the method, path, status, and the time it took to respond.
 
 If the worker throws an error whilst generating a response, an error page
@@ -65,7 +65,7 @@ console.log(await res.json()); // { url: "http://localhost:8787/2", header: "2" 
 When dispatching events, you are responsible for adding
 [`CF-*` headers](https://support.cloudflare.com/hc/en-us/articles/200170986-How-does-Cloudflare-handle-HTTP-Request-headers-)
 and the
-[`cf` object](https://developers.cloudflare.com/workers/runtime-apis/request#incomingrequestcfproperties).
+[`cf` object](/workers/runtime-apis/request#incomingrequestcfproperties).
 This lets you control their values for testing:
 
 ```js

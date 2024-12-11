@@ -3,12 +3,11 @@ order: 3
 title: "📚 Modules"
 ---
 
-- [Modules Reference](https://developers.cloudflare.com/workers/cli-wrangler/configuration#modules)
+- [Modules Reference](/workers/cli-wrangler/configuration#modules)
 
 ## Enabling Modules
 
-Miniflare supports both the traditional `service-worker` and newer `modules`
-formats for writing workers. To use the `modules` format, enable it with:
+Miniflare supports both the traditional `service-worker` and the newer `modules` formats for writing workers. To use the `modules` format, enable it with:
 
 ```js
 const mf = new Miniflare({
@@ -16,7 +15,7 @@ const mf = new Miniflare({
 });
 ```
 
-You can now use `modules` worker scripts like the following:
+You can then use `modules` worker scripts like the following:
 
 ```js
 export default {
@@ -62,11 +61,9 @@ const mf = new Miniflare({
 The following rules are automatically added to the end of your modules rules
 list. You can override them by specifying rules matching the same `globs`:
 
-```toml
-[[build.upload.rules]]
-type = "ESModule"
-globs = ["**/*.mjs"]
-[[build.upload.rules]]
-type = "CommonJS"
-globs = ["**/*.js", "**/*.cjs"]
+```js
+[
+	{ type: "ESModule", include: ["**/*.mjs"] },
+	{ type: "CommonJS", include: ["**/*.js", "**/*.cjs"] },
+];
 ```

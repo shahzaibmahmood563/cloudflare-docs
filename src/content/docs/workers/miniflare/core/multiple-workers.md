@@ -74,7 +74,7 @@ await mf.dispose();
 
 You can enable routing by specifying `routes` via the API,
 using the
-[standard route syntax](https://developers.cloudflare.com/workers/platform/routes#matching-behavior).
+[standard route syntax](/workers/configuration/routing/routes/#matching-behavior).
 Note port numbers are ignored:
 
 ```js
@@ -118,5 +118,5 @@ const res = await mf.dispatchFetch("http://api.mf/todos/update/1", { ... });
 
 Miniflare supports the `script_name` option for accessing Durable Objects
 exported by other scripts. See
-[📌 Durable Objects](/storage/durable-objects#using-a-class-exported-by-another-script)
+[📌 Durable Objects](/workers/miniflare/storage/durable-objects#using-a-class-exported-by-another-script)
 for more details.

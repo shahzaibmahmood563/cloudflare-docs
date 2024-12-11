@@ -3,16 +3,13 @@ order: 4
 title: "🐛 Attaching a Debugger"
 ---
 
-# 🐛 Attaching a Debugger
+:::caution
+This documentation describes breakpoint debugging when using Miniflare directly, which is only relevant for advanced use cases. Instead, most users should refer to the [Workers Observability documentation for how to set this up when using Wrangler](/workers/observability/dev-tools/breakpoints/).
+:::
 
 You can use regular Node.js tools to debug your workers. Setting breakpoints,
 watching values and inspecting the call stack are all examples of things you can
 do with a debugger.
-
-If you're building your worker beforehand (e.g. with esbuild, Webpack, Rollup),
-make sure you're outputting
-[🗺 Source Maps](/developing/source-maps#outputting-source-maps) before
-proceeding.
 
 ## Visual Studio Code
 

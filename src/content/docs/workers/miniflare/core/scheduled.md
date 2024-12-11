@@ -3,8 +3,8 @@ order: 1
 title: "⏰ Scheduled Events"
 ---
 
-- [`ScheduledEvent` Reference](https://developers.cloudflare.com/workers/runtime-apis/scheduled-event)
-- [`addEventListener` Reference](https://developers.cloudflare.com/workers/runtime-apis/add-event-listener)
+- [`ScheduledEvent` Reference](/workers/runtime-apis/scheduled-event)
+- [`addEventListener` Reference](/workers/runtime-apis/add-event-listener)
 
 ## Cron Triggers
 
