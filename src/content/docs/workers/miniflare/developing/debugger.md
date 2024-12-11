@@ -7,7 +7,7 @@ title: "🐛 Attaching a Debugger"
 This documentation describes breakpoint debugging when using Miniflare directly, which is only relevant for advanced use cases. Instead, most users should refer to the [Workers Observability documentation for how to set this up when using Wrangler](/workers/observability/dev-tools/breakpoints/).
 :::
 
-You can use regular Node.js tools to debug your workers. Setting breakpoints,
+You can use regular Node.js tools to debug your Workers. Setting breakpoints,
 watching values and inspecting the call stack are all examples of things you can
 do with a debugger.
 
@@ -63,5 +63,5 @@ debugging.
 ## DevTools
 
 Breakpoints can also be added via the Workers DevTools. For more information,
-[read the guide](https://developers.cloudflare.com/workers/observability/local-development-and-testing/#devtools)
+[read the guide](/workers/observability/local-development-and-testing/#devtools)
 in the Cloudflare Workers docs.

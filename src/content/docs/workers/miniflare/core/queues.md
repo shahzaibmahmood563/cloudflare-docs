@@ -3,7 +3,7 @@ order: 8
 title: "🚥 Queues"
 ---
 
-- [Queues Reference](https://developers.cloudflare.com/queues/)
+- [Queues Reference](/queues/)
 
 ## Producers
 

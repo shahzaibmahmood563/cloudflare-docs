@@ -41,7 +41,7 @@ const mf = new Miniflare({
 
 ## Manipulating Outside Workers
 
-For testing, it can be useful to put/match data from cache outside a worker. You
+For testing, it can be useful to put/match data from cache outside a Worker. You
 can do this with the `getCaches` method:
 
 ```js {23,24,25,26,27,28,29,30,31,32}

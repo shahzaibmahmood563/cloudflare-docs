@@ -3,7 +3,7 @@ order: 2
 title: ⚡️ Live Reload
 ---
 
-Miniflare automatically refreshes your browser when your worker script
+Miniflare automatically refreshes your browser when your Worker script
 changes when `liveReload` is set to `true`.
 
 ```js

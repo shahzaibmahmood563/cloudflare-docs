@@ -17,7 +17,7 @@ title: "🕸 Web Standards"
 When using the API, Miniflare allows you to substitute custom `Response`s for
 `fetch()` calls using `undici`'s
 [`MockAgent` API](https://undici.nodejs.org/#/docs/api/MockAgent?id=mockagentgetorigin).
-This is useful for testing workers that make HTTP requests to other services. To
+This is useful for testing Workers that make HTTP requests to other services. To
 enable `fetch` mocking, create a
 [`MockAgent`](https://undici.nodejs.org/#/docs/api/MockAgent?id=mockagentgetorigin)
 using the `createFetchMock()` function, then set this using the `fetchMock`

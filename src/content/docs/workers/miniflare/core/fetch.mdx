@@ -14,7 +14,7 @@ Whenever an HTTP request is made, a `Request` object is dispatched to your worke
 [`cf` object](/workers/runtime-apis/request#incomingrequestcfproperties).
 Miniflare will log the method, path, status, and the time it took to respond.
 
-If the worker throws an error whilst generating a response, an error page
+If the Worker throws an error whilst generating a response, an error page
 containing the stack trace is returned instead. You can use
 [🗺 Source Maps](/developing/source-maps) to make these point to your source
 files.
@@ -22,7 +22,7 @@ files.
 ## Dispatching Events
 
 When using the API, the `dispatchFetch` function can be used to dispatch `fetch`
-events to your worker. This can be used for testing responses. `dispatchFetch`
+events to your Worker. This can be used for testing responses. `dispatchFetch`
 has the same API as the regular `fetch` method: it either takes a `Request`
 object, or a URL and optional `RequestInit` object:
 

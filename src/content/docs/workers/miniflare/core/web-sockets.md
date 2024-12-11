@@ -8,9 +8,9 @@ title: "✉️ WebSockets"
 
 ## Server
 
-Miniflare will always upgrade Web Socket connections. The worker must respond
+Miniflare will always upgrade Web Socket connections. The Worker must respond
 with a status `101 Switching Protocols` response including a `webSocket`. For
-example, the worker below implements an echo WebSocket server:
+example, the Worker below implements an echo WebSocket server:
 
 ```js
 export default {

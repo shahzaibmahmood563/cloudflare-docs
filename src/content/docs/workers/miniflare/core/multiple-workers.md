@@ -107,7 +107,7 @@ $ curl "http://localhost:8787/todos/update/1" -H "Host: api.mf"
 ```
 
 When using the API, Miniflare will use the request's URL to determine which
-worker to dispatch to.
+Worker to dispatch to.
 
 ```js
 // Dispatches to the "api" worker

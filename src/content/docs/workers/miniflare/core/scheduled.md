@@ -37,7 +37,7 @@ $ curl "http://localhost:8787/cdn-cgi/mf/scheduled?cron=*+*+*+*+*"
 ## Dispatching Events
 
 When using the API, the `getWorker` function can be used to dispatch
-`scheduled` events to your worker. This can be used for testing responses. It
+`scheduled` events to your Worker. This can be used for testing responses. It
 takes optional `scheduledTime` and `cron` parameters, which default to the
 current time and the empty string respectively. It will return a promise which
 resolves to an array containing data returned by all waited promises:
