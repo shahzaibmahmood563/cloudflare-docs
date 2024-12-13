@@ -2,7 +2,9 @@
 {}
 ---
 
-import { Render } from "~/components";
+import { Render, Tabs, TabItem } from "~/components";
+
+<Tabs syncKey="dashPlusAPI"> <TabItem label="Dashboard">
 
 To create a new network policy:
 
@@ -16,5 +18,38 @@ To create a new network policy:
    	product="cloudflare-one"
    />
 6. Select **Create policy**.
+
+</TabItem>
+
+<TabItem label="API">
+
+1. [Create an API token](/fundamentals/api/get-started/create-token/) with the following permissions:
+
+   | Type    | Item       | Permission |
+   | ------- | ---------- | ---------- |
+   | Account | Zero Trust | Edit       |
+
+2. (Optional) Configure your API environment variables to include your [account ID](/fundamentals/setup/find-account-and-zone-ids/), email address, and API token.
+3. Send a `POST` request to the [Create a Zero Trust Gateway rule](/api/operations/zero-trust-gateway-rules-create-zero-trust-gateway-rule) endpoint. For example, you can use a list of [device serial numbers](/cloudflare-one/identity/devices/warp-client-checks/corp-device/) to ensure users can only access an application if they connect with the WARP client from a company device:
+
+   ```bash title="curl API example"
+   curl https://api.cloudflare.com/client/v4/accounts/{account_id}/gateway/rules \
+   --header "X-Auth-Email: <EMAIL>" \
+   --header "X-Auth-Key: <API_KEY>" \
+   --data '{
+   "name": "Enforce device posture",
+   "description": "Ensure only devices in Zero Trust organization can connect to application",
+   "precedence": 0,
+   "enabled": true,
+   "action": "block",
+   "filters": [
+   	"l4"
+   ],
+   "traffic": "any(net.sni.domains[*] == \"internalapp.com\")",
+   "device_posture": "not(any(device_posture.checks.passed[*] in {\"<LIST_UUID>\"}))"
+   }'
+   ```
+
+</TabItem> </Tabs>
 
 For more information, refer to [network policies](/cloudflare-one/policies/gateway/network-policies/).

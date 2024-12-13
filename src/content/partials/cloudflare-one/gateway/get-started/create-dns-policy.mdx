@@ -37,16 +37,15 @@ To create a new DNS policy:
    --header "X-Auth-Email: <EMAIL>" \
    --header "X-Auth-Key: <API_KEY>" \
    --data '{
-   "action": "allow",
-   	"name": "Block security risks",
-   	"description": "Block all default Cloudflare security categories",
-   	"device_posture": "any(device_posture.checks.passed[*] in {})",
-   	"enabled": true,
-   	"filters": [
-   		"dns"
-   	],
-   	"precedence": 0,
-   	"traffic": "any(dns.security_category[*] in {68 178 80 83 176 175 117 131 134 151 153})"
+   "name": "Block security risks",
+   "description": "Block all default Cloudflare security categories",
+   "precedence": 0,
+   "enabled": true,
+   "action": "block",
+   "filters": [
+   	"dns"
+   ],
+   "traffic": "any(dns.security_category[*] in {68 178 80 83 176 175 117 131 134 151 153})"
    }'
    ```
 
