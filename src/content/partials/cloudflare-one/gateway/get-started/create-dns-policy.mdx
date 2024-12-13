@@ -4,6 +4,8 @@
 
 import { Render, Tabs, TabItem } from "~/components";
 
+To create a new DNS policy:
+
 <Tabs syncKey="dashPlusAPI"> <TabItem label="Dashboard">
 
 1. In [Zero Trust](https://one.dash.cloudflare.com/), go to **Gateway** > **Firewall policies**.
@@ -21,51 +23,33 @@ import { Render, Tabs, TabItem } from "~/components";
 
 <TabItem label="API">
 
-1. Create a custom API token with the following permissions:
+1. [Create an API token](/fundamentals/api/get-started/create-token/) with the following permissions:
 
-   | Scope   | Application | Action |
-   | ------- | ----------- | ------ |
-   | Account | Zero Trust  | Edit   |
+   | Type    | Item       | Permission |
+   | ------- | ---------- | ---------- |
+   | Account | Zero Trust | Edit       |
 
-2. (Optional) Configure your API environment variables with your account ID, email address, and API token.
-3. Send a `POST` request to the [Create a Zero Trust Gateway rule](/api/operations/zero-trust-gateway-rules-create-zero-trust-gateway-rule) endpoint:
+2. (Optional) Configure your API environment variables to include your [account ID](/fundamentals/setup/find-account-and-zone-ids/), email address, and API token.
+3. Send a `POST` request to the [Create a Zero Trust Gateway rule](/api/operations/zero-trust-gateway-rules-create-zero-trust-gateway-rule) endpoint. For example, we recommend adding a policy to block all [security categories](/cloudflare-one/policies/gateway/domain-categories/#security-categories):
 
-   ```bash
+   ```bash title="curl API example"
    curl https://api.cloudflare.com/client/v4/accounts/{account_id}/gateway/rules \
-   	--header "X-Auth-Email: <EMAIL>" \
-   	--header "X-Auth-Key: <API_KEY>" \
-   	--header "Content-Type: application/json" \
-   	--data '{
-   	"action": "allow",
-   	"description": "Lisbon team access rule",
+   --header "X-Auth-Email: <EMAIL>" \
+   --header "X-Auth-Key: <API_KEY>" \
+   --data '{
+   "action": "allow",
+   	"name": "Block security risks",
+   	"description": "Block all default Cloudflare security categories",
    	"device_posture": "any(device_posture.checks.passed[*] in {})",
    	"enabled": true,
-   	"expiration": {
-   		"duration": 10,
-   		"expired": false,
-   		"expires_at": "2014-01-01T05:20:20Z"
-   	},
    	"filters": [
-   		"http"
+   		"dns"
    	],
-   	"identity": "any(identity.groups.name[*] in {\"Lisbon-team\"})",
-   	"name": "Lisbon Team Access Rule",
    	"precedence": 0,
-   	"rule_settings": {
-   		"allow_child_bypass": false
-   	},
-   	"schedule": {
-   		"fri": "08:00-12:30,13:30-17:00",
-   		"mon": "08:00-12:30,13:30-17:00",
-   		"sat": "08:00-12:30,13:30-17:00",
-   		"sun": "08:00-12:30,13:30-17:00",
-   		"thu": "08:00-12:30,13:30-17:00",
-   		"time_zone": "America/New York",
-   		"tue": "08:00-12:30,13:30-17:00",
-   		"wed": "08:00-12:30,13:30-17:00"
-   	},
-   	"traffic": "http.request.uri matches \".*a/partial/uri.*\" and http.request.host in $01302951-49f9-47c9-a400-0297e60b6a10"
+   	"traffic": "any(dns.security_category[*] in {68 178 80 83 176 175 117 131 134 151 153})"
    }'
    ```
 
 </TabItem> </Tabs>
+
+For more information, refer to [DNS policies](/cloudflare-one/policies/gateway/dns-policies/).
