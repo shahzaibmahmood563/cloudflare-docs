@@ -314,8 +314,8 @@ export default {
     });
 
     return Response.json({
-      id: badInstance.id,
-      details: await badInstance.status(),
+      id: goodInstance.id,
+      details: await goodInstance.status(),
     });
   },
 };
