@@ -4,9 +4,9 @@
 
 import { Render, Tabs, TabItem } from "~/components";
 
-<Tabs syncKey="dashPlusAPI"> <TabItem label="Dashboard">
-
 To create a new network policy:
+
+<Tabs syncKey="dashPlusAPI"> <TabItem label="Dashboard">
 
 1. In [Zero Trust](https://one.dash.cloudflare.com/), go to **Gateway** > **Firewall policies**.
 2. In the **Network** tab, select **Add a policy**.
@@ -46,6 +46,7 @@ To create a new network policy:
    	"l4"
    ],
    "traffic": "any(net.sni.domains[*] == \"internalapp.com\")",
+   "identity": "",
    "device_posture": "not(any(device_posture.checks.passed[*] in {\"<LIST_UUID>\"}))"
    }'
    ```
