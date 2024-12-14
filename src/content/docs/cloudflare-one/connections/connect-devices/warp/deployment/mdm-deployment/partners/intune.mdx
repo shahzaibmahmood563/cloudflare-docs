@@ -122,3 +122,123 @@ To deploy WARP on Android devices:
     3. Select **Review + save** > **Save**.
 
 Intune will now deploy the Cloudflare One Agent to user devices.
+
+### Per-app VPN
+
+Review the following steps to approve and deploy the Cloudflare One Agent application in Microsoft Intunes and use a configuration policy to set up the per-app VPN. To use the per-app VPN, you must have linked your Microsoft Intune account with the Google-managed Play account as described in the instructions above.
+
+1. Log into the Microsoft Intune admin center.
+2. Go to **Apps** > **All apps** > select **Add**.
+
+![Microsoft Itune admin center](~/assets/images/cloudflare-one/connections/microsoft-intune-admin-center.png)
+
+3. In App type, select _Managed Google Play_.
+4. Search for _Cloudflare One Agent_ > select the app > select **Sync**.
+
+![Microsoft Itune admin center](~/assets/images/cloudflare-one/connections/cloudflare-one-agent.png)
+
+5. Once the sync is successful, admin will see the Cloudflare One Agent app within the **All apps** view in the Microsoft Intune admin center.
+
+#### Configure your Cloudflare One Agent app policy
+
+Review the following steps to configure your Cloudflare One Agent app policy:
+
+1. Go to **Apps** > **App configuration policies** > select **Add** > **Managed Devices**.
+2. Fill out the basic details of your configuration policy:
+	1. Enter the **Name** of the profile. (For example: Cloudflare One Agent - configuration policy)
+	2. Select the Platform as **Android Enterprise**.
+	3. Select the desired **Profile Type**. (For example: Personally-Owned Work Profile Only)
+	4. Select **Cloudflare One Agent** as the Targeted app.
+	5. Select on Next.
+3. Fill out the settings for the configuration policy.
+	1. Select **Configuration setting format** as **Enter JSON data**.
+	2. Enter your desired deployment parameters in the `managedProperty` field. For example:
+
+	```sh
+		{
+		"kind": "androidenterprise#managedConfiguration",
+		"productId": "app:com.cloudflare.cloudflareoneagent",
+		"managedProperty": [
+			{
+				"key": "app_config_bundle_list",
+				"valueBundleArray": [
+					{
+						"managedProperty": [
+							{
+								"key": "organization",
+								"valueString": "${ORGANIZATION_NAME-1}"
+							},
+							{
+								"key": "service_mode",
+								"valueString": "warp"
+							},
+							{
+								"key": "onboarding",
+								"valueBool": true
+							},
+							{
+								"key": "display_name",
+								"valueString": "${UNIQUE_DISPLAY_NAME-1}"
+							},
+							{
+								"key": "warp_tunnel_protocol",
+								"valueString": "MASQUE"
+							},
+							{
+								"key": "tunneled_apps",
+								"valueBundleArray" :[
+									{
+										"managedProperty": [
+											{
+												"key": "app_identifier",
+												"valueString": "com.android.chrome" # Application package name/unique bundle identifier for the Chrome app browser
+											},
+											{
+												"key": "is_browser",
+												"valueBool": true
+											}
+										]
+									},
+									{
+										"managedProperty": [
+											{
+												"key": "app_identifier",
+												"valueString": "com.google.android.gm" # Application package name/unique bundle identifier for the Gmail app
+											},
+											{
+												"key": "is_browser",
+												"valueBool": false # Default value is false, if a user does not define `is_browser` property our app would not treat `app_identifier` package name as a browser.
+											}
+										]
+									}
+								]
+							}
+						]
+					},
+					{
+						"managedProperty": [
+							{
+								"key": "organization",
+								"valueString": "${ORGANIZATION_NAME-1}"
+							},
+							{
+								"key": "service_mode",
+								"valueString": "warp"
+							},
+							{
+								"key": "display_name",
+								"valueString": "${UNIQUE_DISPLAY_NAME-2}"
+							},
+							{
+								"key": "warp_tunnel_protocol",
+								"valueString": "wireguard"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+	```
+
+3. 
