@@ -60,6 +60,8 @@ To create a new HTTP policy:
    }'
    ```
 
+   If Gateway successfully created the policy, the API will respond with a `success` value of `true`.
+
    Cloudflare also recommends adding a policy to block [known threats](/cloudflare-one/policies/gateway/domain-categories/#security-categories) such as Command & Control, Botnet and Malware based on Cloudflare's threat intelligence:
 
    ```bash title="curl API example"
