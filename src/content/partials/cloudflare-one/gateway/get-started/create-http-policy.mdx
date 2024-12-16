@@ -46,25 +46,25 @@ To create a new HTTP policy:
    --header "Content-Type: application/json" \
    --header "Authorization: Bearer <API_TOKEN>" \
    --data '{
-   "name": "Do not inspect applications",
-   "description": "Bypass TLS decryption for unsupported applications",
-   "precedence": 0,
-   "enabled": true,
-   "action": "off",
-   "filters": [
-   "http"
-   ],
-   "traffic": "any(app.type.ids[*] in {16})",
-   "identity": "",
-   "device_posture": ""
+     "name": "Do not inspect applications",
+     "description": "Bypass TLS decryption for unsupported applications",
+     "precedence": 0,
+     "enabled": true,
+     "action": "off",
+     "filters": [
+       "http"
+     ],
+     "traffic": "any(app.type.ids[*] in {16})",
+     "identity": "",
+     "device_posture": ""
    }'
    ```
 
    ```sh output
    {
-   	"success": true,
-   	"errors": [],
-   	"messages": []
+   	 "success": true,
+   	 "errors": [],
+   	 "messages": []
    }
    ```
 
@@ -75,19 +75,19 @@ To create a new HTTP policy:
    ```bash title="Block known risks HTTP policy"
    curl https://api.cloudflare.com/client/v4/accounts/{account_id}/gateway/rules \
    --header "Content-Type: application/json" \
-   --header "Authorization: Bearer <API_Token>" \
+   --header "Authorization: Bearer <API_TOKEN>" \
    --data '{
-   "name": "Block known risks",
-   "description": "Block all default Cloudflare HTTP security categories",
-   "precedence": 0,
-   "enabled": true,
-   "action": "block",
-   "filters": [
-   "http"
-   ],
-   "traffic": "any(http.request.uri.security_category[*] in {68 178 80 83 176 175 117 131 134 151 153})",
-   "identity": "",
-   "device_posture": ""
+     "name": "Block known risks",
+     "description": "Block all default Cloudflare HTTP security categories",
+     "precedence": 0,
+     "enabled": true,
+     "action": "block",
+     "filters": [
+       "http"
+     ],
+     "traffic": "any(http.request.uri.security_category[*] in {68 178 80 83 176 175 117 131 134 151 153})",
+     "identity": "",
+     "device_posture": ""
    }'
    ```
 

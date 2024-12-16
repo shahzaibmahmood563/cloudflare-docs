@@ -37,25 +37,24 @@ To create a new DNS policy:
    --header "Content-Type: application/json" \
    --header "Authorization: Bearer <API_TOKEN>" \
    --data '{
-   "name": "Block security risks",
-   "description": "Block all default Cloudflare DNS security categories",
-   "precedence": 0,
-   "enabled": true,
-   "action": "block",
-   "filters": [
-   	"dns"
-   ],
-   "traffic": "any(dns.security_category[*] in {68 178 80 83 176 175 117 131 134 151 153})"
-   "identity": "",
-   "device_posture": ""
+     "name": "Block security risks",
+     "description": "Block all default Cloudflare DNS security categories",
+     "precedence": 0,
+     "enabled": true,
+     "action": "block",
+     "filters": [
+       "dns"
+     ],
+     "traffic": "any(dns.security_category[*] in {68 178 80 83 176 175 117 131 134 151 153})""identity": "",
+     "device_posture": ""
    }'
    ```
 
    ```sh output
    {
-   	"success": true,
-   	"errors": [],
-   	"messages": []
+   	 "success": true,
+   	 "errors": [],
+   	 "messages": []
    }
    ```
 

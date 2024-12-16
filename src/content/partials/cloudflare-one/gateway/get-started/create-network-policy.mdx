@@ -37,25 +37,25 @@ To create a new network policy:
    --header "Content-Type: application/json" \
    --header "Authorization: Bearer <API_TOKEN>" \
    --data '{
-   "name": "Enforce device posture",
-   "description": "Ensure only devices in Zero Trust organization can connect to application",
-   "precedence": 0,
-   "enabled": true,
-   "action": "block",
-   "filters": [
-   	"l4"
-   ],
-   "traffic": "any(net.sni.domains[*] == \"internalapp.com\")",
-   "identity": "",
-   "device_posture": "not(any(device_posture.checks.passed[*] in {\"<LIST_UUID>\"}))"
+     "name": "Enforce device posture",
+     "description": "Ensure only devices in Zero Trust organization can connect to application",
+     "precedence": 0,
+     "enabled": true,
+     "action": "block",
+     "filters": [
+     	 "l4"
+     ],
+     "traffic": "any(net.sni.domains[*] == \"internalapp.com\")",
+     "identity": "",
+     "device_posture": "not(any(device_posture.checks.passed[*] in {\"<LIST_UUID>\"}))"
    }'
    ```
 
    ```sh output
    {
-   	"success": true,
-   	"errors": [],
-   	"messages": []
+   	 "success": true,
+   	 "errors": [],
+   	 "messages": []
    }
    ```
 
