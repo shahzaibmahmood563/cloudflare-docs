@@ -1,6 +1,6 @@
 ---
 pcx_content_type: concept
-title: Configuration and binding
+title: Configuration and Bindings
 sidebar:
   order: 7
 head: []
@@ -133,3 +133,13 @@ export default {
 ## Routing configuration
 
 For the various static asset routing configuration options, refer to [Routing](/workers/static-assets/routing/).
+
+## Smart Placement
+
+[Smart Placement](/workers/configuration/smart-placement/) can be used to place a Worker's code close to your back-end infrastructure. Smart Placement will only have an effect if you specified a `main`, pointing to your Worker code.
+
+:::note
+
+Turning on Smart Placement in a Worker that is using static assets and [`serve_directly=false`](/workers/static-assets/routing/#invoking-worker-script-ahead-of-assets) means your entire Worker could be moved to run closer to your data source. All requests will go to that Worker before serving assets. This could result in an increase of round trip times when fetching assets through an asset binding.
+
+:::
