@@ -29,13 +29,13 @@ To create a new DNS policy:
    | ------- | ---------- | ---------- |
    | Account | Zero Trust | Edit       |
 
-2. (Optional) Configure your API environment variables to include your [account ID](/fundamentals/setup/find-account-and-zone-ids/), email address, and API token.
+2. (Optional) Configure your API environment variables to include your [account ID](/fundamentals/setup/find-account-and-zone-ids/) and API token.
 3. Send a `POST` request to the [Create a Zero Trust Gateway rule](/api/operations/zero-trust-gateway-rules-create-zero-trust-gateway-rule) endpoint. For example, we recommend adding a policy to block all [security categories](/cloudflare-one/policies/gateway/domain-categories/#security-categories):
 
-   ```bash title="curl API example"
+   ```sh title="curl API DNS policy example"
    curl https://api.cloudflare.com/client/v4/accounts/{account_id}/gateway/rules \
-   --header "X-Auth-Email: <EMAIL>" \
-   --header "X-Auth-Key: <API_KEY>" \
+   --header "Content-Type: application/json" \
+   --header "Authorization: Bearer <API_TOKEN>" \
    --data '{
    "name": "Block security risks",
    "description": "Block all default Cloudflare DNS security categories",
@@ -51,7 +51,15 @@ To create a new DNS policy:
    }'
    ```
 
-   If Gateway successfully created the policy, the API will respond with a `success` value of `true`.
+   ```sh output
+   {
+   	"success": true,
+   	"errors": [],
+   	"messages": []
+   }
+   ```
+
+   The API will respond with a summary of the policy and the result of your request.
 
 </TabItem> </Tabs>
 
