@@ -1,6 +1,5 @@
 import { fetchMock, SELF } from "cloudflare:test";
 import { describe, it, expect, beforeAll, afterEach } from "vitest";
-import openAPISchema from "./fixtures/openapi.json";
 import puppeteer, { Browser, HTTPRequest } from "@cloudflare/puppeteer";
 import { inject } from "vitest";
 
